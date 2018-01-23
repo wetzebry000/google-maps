@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<!--created by Bryce Wetzel on January 17, 2018-->
+<html>
+<body>
+
+<h1>My Second Google Map</h1>
+
+<select onchange="getMap(this)">
+  <option value="france">France</option>
+  <option value="cuba">Cuba</option>
+  <option value="mexico">Mexico</option>
+  <option value="india">India</option>
+</select>
+</br>
+</br>
+</br>
+</br>
+<!--46.2276° N, 2.2137° E
+21.5218° N, 77.7812° W
+23.6345° N, 102.5528° W
+20.5937° N, 78.9629° E
+-->
+
+<!-- Paris Coords: 48.8566° N, 2.3522° E
+    Havana Coords: 23.1136° N, 82.3666° W
+    Mexico City Coords: 19.4326° N, 99.1332° W
+    New Delhi Coords: 28.6139° N, 77.2090° E
+-->
+
+<div id="map" style="width:400px;height:400px;"></div>
+<script>
+
+function myMap(lat, long) {
+  if(lat == null){
+    lat = 46.2276;
+  }
+  if(long == null){
+    long = 2.2137;
+  }
+    var mapCanvas = document.getElementById("map");
+    var mapOptions = {
+        center: new google.maps.LatLng(lat, long),
+        zoom: 5
+    };
+    var map = new google.maps.Map(mapCanvas, mapOptions);
+    var paris = new google.maps.LatLng(48.8566, 2.3522);
+    var marker = new google.maps.Marker({position:paris});
+    var havana =  new google.maps.LatLng(23.1136, -82.3666);
+    var marker1 = new google.maps.Marker({position:havana});
+    var mexicoCity =  new google.maps.LatLng(19.4326, -99.1332);
+    var marker2 = new google.maps.Marker({position:mexicoCity});
+    var newDelhi = new google.maps.LatLng(28.6139, 77.2090);
+    var marker3 = new google.maps.Marker({position:newDelhi});
+      marker.setMap(map);
+      marker1.setMap(map);
+      marker2.setMap(map);
+      marker3.setMap(map);
+    }
+
+
+function getMap(e){
+  if(e.value == "france"){
+      lat = 46.2276;
+      long = 2.2137;
+  }else if(e.value == "cuba"){
+      lat = 21.5218;
+      long = -77.7812;
+  }else if(e.value == "mexico"){
+      lat = 23.6345;
+      long = -102.5528;
+  }else if(e.value == "india"){
+      lat = 21.9937;
+      long = 78.9629
+  }
+
+    myMap(lat, long);
+}
+</script>
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDNnP1FdXX4TA0iI_5WIipCM0cBp6dwEBA&callback=myMap"></script>
+
+
+<!--
+To use this code on your website, get a free API key from Google.
+Read more at: https://www.w3schools.com/graphics/google_maps_basic.asp
+-->
+<style>
+     /* Always set the map height explicitly to define the size of the div
+      * element that contains the map. */
+     #map {
+       height: 100%;
+     }
+     /* Optional: Makes the sample page fill the window. */
+     html, body {
+       height: 100%;
+       margin: 0;
+       padding: 0;
+     }
+   </style>
+ </head>
+
+
+</body>
+</html>
